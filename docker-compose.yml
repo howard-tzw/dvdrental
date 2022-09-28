@@ -1,0 +1,20 @@
+version: '3'
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: "0"
+      POSTGRES_USER: "postgres"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./initdb.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  pg_data:

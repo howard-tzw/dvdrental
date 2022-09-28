@@ -1,21 +1,31 @@
-### 介紹
+# dvdrental
 
-學習 postgres 可以參考學習的 DVD 出租資料庫！
-參閱 https://www.postgresqltutorial.com/postgresql-sample-database/
+A sample database for learning Postgres
+- source: https://www.postgresqltutorial.com/postgresql-sample-database/
 
-### how to use
+## how to use
 
-建立 image
+Use `docker`
+
+1. Build image
 
 ```
 docker build -t dvdrental .
 ```
 
-建立 container
+2. Run container
 
 ```
 docker run -p 5433:5432 -d --rm --name pgdvd dvdrental
 ```
 
-- 使用 pgadmin 連到 port 5433，Host 使用 host.docker.internal
-- 注意：Dockerfile 的 postgres 版本，最新版無法 restore dvdrental.tar
+Use `docker-compose`
+
+1. `docker compose up -d`
+2. `docker compose down`
+
+
+## Notes
+- Make sure to connect database named `dvdrental`
+- Connect to port 5433, using `host.docker.internal` as Host on MacOS (no needed on Linux)
+- The backup can only be restored by specific Postgres version
